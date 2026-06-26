@@ -1,0 +1,41 @@
+-- Key System GUI (LocalScript)
+local KEY = "HI"
+local LINK = "https://www.robiox.com.gr/communities/6337547406/Reaperstrap" -- change anytime
+
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player.PlayerGui)
+gui.Name = "KeySystem"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 400, 0, 200)
+frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+frame.BackgroundColor3 = Color3.fromRGB(15, 15, 35)
+
+local input = Instance.new("TextBox", frame)
+input.PlaceholderText = "Paste your key here..."
+input.Size = UDim2.new(0.9, 0, 0, 40)
+input.Position = UDim2.new(0.05, 0, 0.2, 0)
+
+local checkBtn = Instance.new("TextButton", frame)
+checkBtn.Text = "Check Key"
+checkBtn.Size = UDim2.new(0.45, -5, 0, 36)
+checkBtn.Position = UDim2.new(0.05, 0, 0.65, 0)
+
+local copyBtn = Instance.new("TextButton", frame)
+copyBtn.Text = "Copy Link"
+copyBtn.Size = UDim2.new(0.45, -5, 0, 36)
+copyBtn.Position = UDim2.new(0.5, 5, 0, 65)
+
+checkBtn.MouseButton1Click:Connect(function()
+    if input.Text == KEY then
+        gui:Destroy()
+        -- load your script here
+    else
+        input.PlaceholderText = "Wrong key! Get it via Copy Link"
+        input.Text = ""
+    end
+end)
+
+copyBtn.MouseButton1Click:Connect(function()
+    setclipboard(LINK) -- works in most Roblox executors
+end)
